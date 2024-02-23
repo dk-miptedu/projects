@@ -8,8 +8,7 @@
 
 1. [Тема 1. Введение в Golang и настройка среды разработки](/src/github.com/HelloWorld/README.md)
 1. [Тема 2. Базовые типы данных и управляющие структуры](/src/github.com/BudgetCalcSimple/README.md)
-1. Тема 3. Функции и пакеты
-1. Тема 4. Типы данных в Golang: array, slice, map
+1. [Тема 3. Функции и пакеты, Тема 4. Типы данных в Golang: array, slice, map](/src/github.com/FuncPackageTypes/README.md)
 1. Тема 5. Объектно ориентированное программирование в Golang
 1. Тема 6. Работа с файлами и директориями
 1. Тема 7. Создание RESTful API на Golang
