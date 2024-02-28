@@ -1,6 +1,0 @@
-go 1.22.0
-use (
-    ./src/github.com/HelloWorld
-    ./src/github.com/BudgetCalcSimple
-    ./src/github.com/FuncPackageTypes
-)
