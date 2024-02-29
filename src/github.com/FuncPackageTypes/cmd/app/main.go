@@ -1,7 +1,8 @@
 package main
 
 import (
-	"FuncPackageTypes/cmd/person"
+	"FuncPackageTypes/cmd/cources"
+	"FuncPackageTypes/cmd/dictionaries"
 	"FuncPackageTypes/cmd/slices"
 	"FuncPackageTypes/cmd/students"
 	"FuncPackageTypes/cmd/tasks"
@@ -10,37 +11,22 @@ import (
 
 func main() {
 	homeTasks := tasks.GetTaskHomeWork()
-	for i := 0; i <= len(homeTasks); i++ {
-
-		fmt.Println(homeTasks[i])
+	for i, homeTask := range homeTasks {
+		fmt.Println("=====================")
+		fmt.Printf("Задание %d: %s\n", i, homeTask)
+		switch i {
+		case 1:
+			slices.SplitInputStrings()
+		case 2:
+			students.StudentsTest()
+		case 3:
+			dictionaries.DictManage()
+		case 4:
+			cources.Booking()
+			//default:
+			//	fmt.Println("Неизвестная задача, Выход")
+			//	break
+		}
 
 	}
-
-	fmt.Println("**Задание 1**")
-	slices.SplitInputStrings()
-
-	fmt.Println("Задание 2")
-	students.StudentsTest()
-
-	fmt.Println("Задание 3")
-
-	person := person.Person{
-		Name: "VAsya",
-		Age:  30,
-	}
-	person.GetInfo()
-	err := person.SetAge(35)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	err = person.AddFriend("Pet", 25)
-
-	if err := person.AddFriend("petty", 26); err != nil {
-		fmt.Println(err)
-	}
-	if err := person.AddFriend("Drytty", 36); err != nil {
-		fmt.Println(err)
-	}
-	person.ListFriends()
 }
