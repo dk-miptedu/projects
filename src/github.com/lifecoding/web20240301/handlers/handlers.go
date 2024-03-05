@@ -2,20 +2,42 @@ package handlers
 
 import (
 	"encoding/json"
+	"errors"
 	"net/http"
 	"web20240301/models"
+	"web20240301/repo"
 )
 
-var InMemoryDB = make(map[string]models.Item)
+var InMemoryDB = repo.NewInMemoryDB()
 
-//нужно использовать Mutex
+func Item(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case "POST":
 
-func CreateItem(w http.ResponseWriter, r *http.Request) {
-	var item models.Item
-	if err := json.NewDecoder(r.Body).Decode(&item); err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
+		var item models.Item
+		if err := json.NewDecoder(r.Body).Decode(&item); err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+		}
+
+		InMemoryDB.Create(item)
+
+		json.NewEncoder(w).Encode(models.ItemResponse{Item: item, Ok: true})
+	case "GET":
+		id := r.URL.Query().Get("id") //query rq
+
+		if id == "" {
+			http.Error(w, errors.New("id can not empty").Error(), http.StatusBadRequest)
+		} else if id != "" {
+			item, err := InMemoryDB.Read((id))
+			if err != nil {
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+
+			}
+			json.NewEncoder(w).Encode(models.ItemResponse{Item: *item, Ok: true})
+		} else {
+			items := InMemoryDB.List()
+			json.NewEncoder(w).Encode(models.ListResponse{Item: items, Ok: true})
+		}
+
 	}
-	InMemoryDB[item.ID] = item
-	json.NewEncoder(w).Encode(models.CreateResponse{Item: item, Ok: true})
-
 }

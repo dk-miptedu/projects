@@ -5,7 +5,12 @@ type Item struct {
 	Value string `json:"value"`
 }
 
-type CreateResponse struct {
+type ItemResponse struct {
 	Item Item `json:"item"`
 	Ok   bool `json:"Ok"`
+}
+
+type ListResponse struct {
+	Item []Item `json:"item"`
+	Ok   bool   `json:"Ok"`
 }
