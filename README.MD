@@ -11,7 +11,7 @@
 1. [Тема 3. Функции и пакеты, Тема 4. Типы данных в Golang: array, slice, map](/src/github.com/FuncPackageTypes/README.md)
 1. [Тема 5. Объектно ориентированное программирование в Golang](/src/github.com/dz-04_Topic05_BookLibrary/README.md)
 1. Тема 6. Работа с файлами и директориями
-1. Тема 7. Создание RESTful API на Golang
+1. [Тема 7. Создание RESTful API на Golang](/src/github.com/dz-05_RESTful_API/README.md)
 1. Тема 8. Работа с базами данных в Golang
 1. Тема 9. Встроенные инструменты Golang
 1. Тема 10. Паттерны проектирования
