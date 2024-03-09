@@ -36,6 +36,8 @@ func (db *InMemoryDB) CreateItem(item models.Transaction) string {
 
 }
 func (db *InMemoryDB) UpdateItem(id string, item models.Transaction) bool {
+	db.mu.Lock()
+	defer db.mu.Unlock()
 
 	for index, itemBefore := range db.Items {
 		//fmt.Println(index, " : ", itemBefore)
@@ -51,6 +53,8 @@ func (db *InMemoryDB) UpdateItem(id string, item models.Transaction) bool {
 
 }
 func (db *InMemoryDB) DeleteItem(id string) bool {
+	db.mu.Lock()
+	defer db.mu.Unlock()
 
 	for index, item := range db.Items {
 		//fmt.Println(index, " : ", item)
