@@ -36,7 +36,7 @@ func (db *InMemoryDB) Read(id string) (*models.Item, error) {
 	if !exist {
 		return nil, errNotFound
 	}
-
+	array
 	return &item, nil
 
 }
