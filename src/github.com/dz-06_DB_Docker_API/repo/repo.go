@@ -22,7 +22,7 @@ const (
 	port     = 5432
 	user     = "mplspsql"
 	password = "mplspsql"
-	dbname   = "mplspsql"
+	dbname   = "transactionsdb"
 )
 
 type InMemoryDB struct {

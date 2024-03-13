@@ -2,11 +2,13 @@ package cmd
 
 import (
 	"dz-06_DB_Docker_API/handlers"
+	"dz-06_DB_Docker_API/repo"
 	"fmt"
 	"net/http"
 )
 
 func Run() {
+	repo.InitDB()
 	fmt.Println("Web server starts...")
 
 	mux := http.NewServeMux()
