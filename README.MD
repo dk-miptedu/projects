@@ -12,7 +12,7 @@
 1. [Тема 5. Объектно ориентированное программирование в Golang](/src/github.com/dz-04_Topic05_BookLibrary/README.md)
 1. Тема 6. Работа с файлами и директориями
 1. [Тема 7. Создание RESTful API на Golang](/src/github.com/dz-05_RESTful_API/README.md)
-1. Тема 8. Работа с базами данных в Golang
+1. [Тема 8. Работа с базами данных в Golang](/src/github.com/dz-06_DB_Docker_API/README.md)
 1. Тема 9. Встроенные инструменты Golang
 1. Тема 10. Паттерны проектирования
 1. Тема 11. Тестирование и отладка в Golang
