@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+  trace_marketplace_psql:
+    image: postgres:13.4
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: "mplspsql"
+      POSTGRES_PASSWORD: "mplspsql"
+      POSTGRES_DB: "mplspsql"
+      PGDATA: /pgdata
+    volumes:
+      - ./migration.sql:/docker-entrypoint-initdb.d/migration.sql
+    ports:
+      - "5432:5432"
+volumes:
+  mplspsql-data:
