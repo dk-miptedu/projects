@@ -1,10 +1,13 @@
 package handlers
 
 import (
+	"dz-06_DB_Docker_API/db"
 	"dz-06_DB_Docker_API/models"
 	"encoding/json"
 	"net/http"
 	"strconv"
+
+	"github.com/gorilla/mux"
 )
 
 const (

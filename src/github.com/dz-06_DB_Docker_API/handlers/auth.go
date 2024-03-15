@@ -1,11 +1,11 @@
 package handlers
 
 import (
+	"dz-06_DB_Docker_API/db"
+	"dz-06_DB_Docker_API/models"
 	"encoding/json"
 	"net/http"
 	"time"
-	"yourproject/db"
-	"yourproject/models"
 
 	"github.com/dgrijalva/jwt-go"
 	"golang.org/x/crypto/bcrypt"

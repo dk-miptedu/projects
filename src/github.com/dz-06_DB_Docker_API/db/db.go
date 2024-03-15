@@ -2,6 +2,7 @@ package db
 
 import (
 	"dz-06_DB_Docker_API/models"
+	"fmt"
 	"log"
 	"os"
 
@@ -9,11 +10,20 @@ import (
 	"gorm.io/gorm"
 )
 
+const (
+	host     = "localhost"
+	port     = 5432
+	user     = "mplspsql"
+	password = "mplspsql"
+	dbname   = "transactionsdb"
+)
+
 var DB *gorm.DB
 
 func Connect() {
 	var err error
-	dsn := "host=localhost user=user password=password dbname=transactionsdb port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+	//	dsn := "host=localhost user=user password=password dbname=transactionsdb port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+	dsn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable TimeZone=Asia/Shanghai", host, port, user, password, dbname)
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal("Failed to connect to database\n", err)

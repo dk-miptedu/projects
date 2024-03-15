@@ -17,7 +17,7 @@ func Run() {
 	r := mux.NewRouter()
 
 	r.HandleFunc("/transactions", handlers.HandleTransactions)
-	r.HandleFunc("/transactions", Authenticate(handlers.HandleTransactions)).Methods("GET", "POST")
+	r.HandleFunc("/transactions", handlers.Authenticate(handlers.HandleTransactions)).Methods("GET", "POST")
 	r.HandleFunc("/transactions/{id}", handlers.HandleTransactions) // Для PUT и DELETE
 
 	http.Handle("/", r)
