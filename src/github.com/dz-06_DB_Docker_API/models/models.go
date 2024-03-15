@@ -2,35 +2,25 @@ package models
 
 import (
 	"strings"
+	"time"
 )
 
-type UserRequest struct {
+type User struct {
+	ID       uint   `gorm:"primaryKey" json:"id"`
 	Name     string `json:"name"`
-	Password string `json:"password"`
-}
-
-type UserResponse struct {
-	Greeting string `json:"greeting"`
-}
-
-type ItemResponse struct {
-	Item string `json:"id"`
-	Ok   string `json:"status"`
+	Email    string `gorm:"unique" json:"email"`
+	Password string `json:"-"`
 }
 
 type Transaction struct {
-	ID          string  `json:"id"`
-	Amount      float32 `json:"amount"`      //сумма
-	Currency    string  `json:"currency"`    //валюта: "USD", "EUR", "RUB", "JPY", и т. д.
-	Types       string  `json:"type"`        //тип: доход, расход или перевод
-	Category    string  `json:"category"`    //категория: зарплата, еда, жильё и т. д.
-	Dates       string  `json:"date"`        //дата
-	Description string  `json:"description"` //описание
-
-}
-type TransactionList struct {
-	Item []Transaction `json:"item"`
-	Ok   bool          `json:"Ok"`
+	ID          uint      `gorm:"primaryKey" json:"id"`
+	UserID      uint      `json:"user_id"`
+	Amount      float64   `json:"amount"`
+	Currency    string    `json:"currency"`
+	Type        string    `json:"type"`
+	Category    string    `json:"category"`
+	Date        time.Time `json:"date"`
+	Description string    `json:"description"`
 }
 
 // 202024-03-09 Проверки в проекте не используются, добавлю потом
