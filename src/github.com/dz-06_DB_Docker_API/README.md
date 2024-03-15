@@ -87,7 +87,9 @@ docker-compose down
 - Удаление транзакции по её ID для пользователя.
 
 ```bash
+
 #Request
+# Token: <Значение> из запроса # Аутентификация пользователя (Доп.задание)
 curl -X POST http://localhost:8080/transactions \
 -H "Token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTA1MTM3MzQsInVzZXJfaWQiOjR9.D7YnMNY6o-07cJ37oUciISumH_WBv97FZFQNPG7k9so" \
 -H "Content-Type: application/json" \
