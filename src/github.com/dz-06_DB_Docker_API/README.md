@@ -99,6 +99,10 @@ docker-compose down
 ```bash
 # Регистрация пользователя
 curl -X POST http://localhost:8080/users -H "Content-Type: application/json" -d '{"name":"John Doe", "email":"john.doe1@example.com", "password":"passwd01"}'
+
+# Аутентификация пользователя
+curl -X POST http://localhost:8080/users/login -H "Content-Type: application/json" -d '{"email":"john.doe1@example.com", "password":"passwd01"}'
+
 ```
 
 ### Шаг 5. Тестирование
