@@ -19,6 +19,8 @@ func Run() {
 	r.HandleFunc("/transactions", handlers.HandleTransactions)
 	r.HandleFunc("/transactions", handlers.Authenticate(handlers.HandleTransactions)).Methods("GET", "POST")
 	r.HandleFunc("/transactions/{id}", handlers.HandleTransactions) // Для PUT и DELETE
+	r.HandleFunc("/users", handlers.RegisterUser).Methods("POST")
+	r.HandleFunc("/users/login", handlers.LoginUser).Methods("POST")
 
 	http.Handle("/", r)
 

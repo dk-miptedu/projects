@@ -96,6 +96,11 @@ docker-compose down
 
 Далее проверяйте токен при каждом запросе на ваш веб-сервис, чтобы убедиться, что пользователь существует и логин и пароль введены корректно.
 
+```bash
+# Регистрация пользователя
+curl -X POST http://localhost:8080/users -H "Content-Type: application/json" -d '{"name":"John Doe", "email":"john.doe1@example.com", "password":"passwd01"}'
+```
+
 ### Шаг 5. Тестирование
 Используйте Postman или cURL для тестирования разработанных эндпоинтов.
 Пример работы программы
