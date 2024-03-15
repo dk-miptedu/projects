@@ -86,6 +86,25 @@ docker-compose down
 - Удаление транзакции по ID: DELETE /transactions/{id}.
 - Удаление транзакции по её ID для пользователя.
 
+```bash
+#Request
+curl -X POST http://localhost:8080/transactions \
+-H "Token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTA1MTM3MzQsInVzZXJfaWQiOjR9.D7YnMNY6o-07cJ37oUciISumH_WBv97FZFQNPG7k9so" \
+-H "Content-Type: application/json" \
+-d '{
+    "user_id": 4,
+    "amount": 100.50,
+    "currency": "USD",
+    "type": "expense",
+    "category": "Food",
+    "date": "2023-03-13T14:00:00Z",
+    "description": "Lunch at restaurant"
+}'
+
+#Responce:
+{"id":1,"user_id":4,"amount":100.5,"currency":"USD","type":"expense","category":"Food","date":"2023-03-13T14:00:00Z","description":"Lunch at restaurant"}
+```
+
 ### Дополнительное задание (необязательное)- не реализовано
 
 Реализуйте аутентификацию пользователя.
@@ -101,7 +120,13 @@ docker-compose down
 curl -X POST http://localhost:8080/users -H "Content-Type: application/json" -d '{"name":"John Doe", "email":"john.doe1@example.com", "password":"passwd01"}'
 
 # Аутентификация пользователя
-curl -X POST http://localhost:8080/users/login -H "Content-Type: application/json" -d '{"email":"john.doe1@example.com", "password":"passwd01"}'
+curl -vv -X POST http://localhost:8080/users/login -H "Content-Type: application/json" -d '{"email":"john.doe1@example.com", "password":"passwd01"}'
+
+Response:
+< HTTP/1.1 200 OK
+< Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTA1MTM3MzQsInVzZXJfaWQiOjR9.D7YnMNY6o-07cJ37oUciISumH_WBv97FZFQNPG7k9so
+< Date: Fri, 13 Mar 2024 14:12:14 GMT
+< Content-Length: 0
 
 ```
 
