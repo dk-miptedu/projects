@@ -23,12 +23,12 @@ version: ‘3.1’
 
 services:
 db:
-image: postgres:latest
-restart: always
+  image: postgres:latest
+  restart: always
 environment:
-POSTGRES_DB: transactionsdb
-POSTGRES_USER: user
-POSTGRES_PASSWORD: password
+  POSTGRES_DB: transactionsdb
+  POSTGRES_USER: user
+  POSTGRES_PASSWORD: password
 ports:
 - "5432:5432"
 volumes:
