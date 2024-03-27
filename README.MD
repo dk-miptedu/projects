@@ -17,7 +17,7 @@
 1. [Тема 10. Паттерны проектирования(ДЗ 07)](/src/github.com/dz-07_ComissionsCalc/README.md)
 1. Тема 11. Тестирование и отладка в Golang
 1. Тема 12. Развёртывание приложений на Golang
-1. Тема 13. Основы Docker и контейнеризации в Golang
+1. [Тема 13. Основы Docker и контейнеризации в Golang](/src/github.com/dz-08_Currency_Rate/README.md)
 1. Тема 14. CI/CD в Golang с использованием Kubernetes
 1. Тема 15. Мониторинг и логирование в Kubernetes
 1. Итоговый вебинар
