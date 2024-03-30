@@ -26,26 +26,18 @@ func TestGetTransactions(t *testing.T) {
 		{ID: 2, UserID: 1, Amount: 200.00, Currency: "EUR", Type: "transfer"},
 	}
 
-	// Here you would typically set up your db mock to return `mockedTransactions`
-	// This step is skipped due to the direct use of gorm.DB in the handler function.
-
-	// Call the handler function
 	getTransactions(rr, req)
 
-	// Check the status code
 	if status := rr.Code; status != http.StatusOK {
 		t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusOK)
 	}
 
-	// Check the body
 	var transactions []models.Transaction
 	err = json.NewDecoder(rr.Body).Decode(&transactions)
 	if err != nil {
 		t.Fatal("Failed to decode response body")
 	}
 
-	// Assuming we know what the mocked database should return, we can assert on the response content
-	// This is a simplistic check; in a real test, you'd compare the actual data
 	if len(transactions) != 2 {
 		t.Errorf("handler returned unexpected number of transactions: got %v want %v", len(transactions), 2)
 	}
