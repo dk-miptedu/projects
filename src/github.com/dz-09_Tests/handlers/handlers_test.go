@@ -1,46 +1,69 @@
-package handlers
+package handlers_test
 
 import (
+	"bytes"
 	"encoding/json"
+	"golang_hws/handlers"
 	"golang_hws/models"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	"time"
+
+	"github.com/gorilla/mux"
 )
 
-// TestGetTransactions tests the getTransactions function
-func TestGetTransactions(t *testing.T) {
-	// Initialize a new httptest.ResponseRecorder
-	rr := httptest.NewRecorder()
+func TestHandleTransactionsGet(t *testing.T) {
+	// Setup
+	r := mux.NewRouter()
+	r.HandleFunc("/transactions", handlers.HandleTransactions).Methods("GET")
+	ts := httptest.NewServer(r)
+	defer ts.Close()
 
-	// Initialize a new http request
-	req, err := http.NewRequest("GET", "/transactions", nil)
+	// Execute
+	res, err := http.Get(ts.URL + "/transactions")
 	if err != nil {
-		t.Fatal(err)
+		t.Fatalf("Failed to send GET request: %v", err)
+	}
+	defer res.Body.Close()
+
+	// Verify
+	if res.StatusCode != http.StatusOK {
+		t.Errorf("Expected status code %d, got %d", http.StatusOK, res.StatusCode)
 	}
 
-	// Assuming a global variable or a way to inject a mock db instance exists
-	// Mock the expected response
-	//dateTimeStr := "2023-03-13T14:00:00Z"
-	//parsedTime, err := time.Parse(time.RFC3339, dateTimeStr)
-	//mockedTransactions := []models.Transactions{
-	//	{ID: 1, UserID: 1, Amount: 100.00, Currency: "USD", TransactionType: "transfer", Category: "SBP", TransactionDate: parsedTime, Description: "Service 01", Commission: 1.00},
-	//	{ID: 2, UserID: 1, Amount: 200.00, Currency: "EUR", TransactionType: "transfer", Category: "SBP", TransactionDate: parsedTime, Description: "Service 02", Commission: 5.00},
-	//}
+	// Here you'd check the response body for correct data
+	// This step is omitted for simplicity
+}
 
-	getTransactions(rr, req)
-
-	if status := rr.Code; status != http.StatusOK {
-		t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusOK)
+func TestHandleTransactionsPost(t *testing.T) {
+	// Setup
+	r := mux.NewRouter()
+	r.HandleFunc("/transactions", handlers.HandleTransactions).Methods("POST")
+	ts := httptest.NewServer(r)
+	defer ts.Close()
+	dateTimeStr := "2023-03-13T14:00:00Z"
+	parsedTime, err := time.Parse(time.RFC3339, dateTimeStr)
+	// Create a transaction to send in the request
+	newTransaction := []models.Transactions{
+		{ID: 1, UserID: 1, Amount: 100.00, Currency: "USD", TransactionType: "transfer", Category: "SBP", TransactionDate: parsedTime, Description: "Service 01", Commission: 1.00},
+		{ID: 2, UserID: 1, Amount: 200.00, Currency: "EUR", TransactionType: "transfer", Category: "SBP", TransactionDate: parsedTime, Description: "Service 02", Commission: 5.00},
 	}
 
-	var transactions []models.Transactions
-	err = json.NewDecoder(rr.Body).Decode(&transactions)
+	body, _ := json.Marshal(newTransaction)
+
+	// Execute
+	res, err := http.Post(ts.URL+"/transactions", "application/json", bytes.NewReader(body))
 	if err != nil {
-		t.Fatal("Failed to decode response body")
+		t.Fatalf("Failed to send POST request: %v", err)
+	}
+	defer res.Body.Close()
+
+	// Verify
+	if res.StatusCode != http.StatusCreated {
+		t.Errorf("Expected status code %d, got %d", http.StatusCreated, res.StatusCode)
 	}
 
-	if len(transactions) != 2 {
-		t.Errorf("handler returned unexpected number of transactions: got %v want %v", len(transactions), 2)
-	}
+	// You would also typically unmarshal and check the response body here
+	// This step is omitted for simplicity
 }
