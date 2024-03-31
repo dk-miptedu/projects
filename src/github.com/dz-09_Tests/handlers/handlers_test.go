@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
-	"time"
 )
 
 // TestGetTransactions tests the getTransactions function
@@ -22,12 +21,12 @@ func TestGetTransactions(t *testing.T) {
 
 	// Assuming a global variable or a way to inject a mock db instance exists
 	// Mock the expected response
-	dateTimeStr := "2023-03-13T14:00:00Z"
-	parsedTime, err := time.Parse(time.RFC3339, dateTimeStr)
-	mockedTransactions := []models.Transactions{
-		{ID: 1, UserID: 1, Amount: 100.00, Currency: "USD", TransactionType: "transfer", Category: "SBP", TransactionDate: parsedTime, Description: "Service 01", Commission: 1.00},
-		{ID: 2, UserID: 1, Amount: 200.00, Currency: "EUR", TransactionType: "transfer", Category: "SBP", TransactionDate: parsedTime, Description: "Service 02", Commission: 5.00},
-	}
+	//dateTimeStr := "2023-03-13T14:00:00Z"
+	//parsedTime, err := time.Parse(time.RFC3339, dateTimeStr)
+	//mockedTransactions := []models.Transactions{
+	//	{ID: 1, UserID: 1, Amount: 100.00, Currency: "USD", TransactionType: "transfer", Category: "SBP", TransactionDate: parsedTime, Description: "Service 01", Commission: 1.00},
+	//	{ID: 2, UserID: 1, Amount: 200.00, Currency: "EUR", TransactionType: "transfer", Category: "SBP", TransactionDate: parsedTime, Description: "Service 02", Commission: 5.00},
+	//}
 
 	getTransactions(rr, req)
 
