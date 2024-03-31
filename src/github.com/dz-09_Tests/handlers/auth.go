@@ -12,7 +12,7 @@ import (
 )
 
 func RegisterUser(w http.ResponseWriter, r *http.Request) {
-	var user models.User
+	var user models.Users
 	err := json.NewDecoder(r.Body).Decode(&user)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
@@ -38,14 +38,14 @@ func RegisterUser(w http.ResponseWriter, r *http.Request) {
 var jwtKey = []byte("dz06")
 
 func LoginUser(w http.ResponseWriter, r *http.Request) {
-	var credentials models.User
+	var credentials models.Users
 	err := json.NewDecoder(r.Body).Decode(&credentials)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
-	var user models.User
+	var user models.Users
 	result := db.DB.Where("email = ?", credentials.Email).First(&user)
 	if result.Error != nil {
 		http.Error(w, "User not found", http.StatusBadRequest)
