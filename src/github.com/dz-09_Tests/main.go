@@ -1,8 +1,9 @@
 package main
 
-import "golang_hws/cmd"
+import delete0 "golang_hws/delete"
 
 func main() {
 	// ...
-	cmd.Run()
+	//cmd.Run()
+	delete0.TestAddTrn()
 }
