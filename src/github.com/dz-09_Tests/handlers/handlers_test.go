@@ -23,7 +23,7 @@ func TestAddTransaction(t *testing.T) {
 		{ID: 5, UserID: 3, Amount: 100, Currency: "RUB", TransactionType: "nock-nock", Category: "FOOd", TransactionDate: parsedTime, Description: "Заказ", Commission: 0.},
 	}
 	// Execute & Verify
-	//Проверяем Расчет комиссии и обновление щтампа времени транзакции
+	//Проверяем Расчет комиссии и обновление штампа времени транзакции
 	for _, aa := range testData {
 		a := aa.TransactionDate //Запоминаем штамп времени из testData
 		b := aa.Commission      //Запоминаем размер комиссии из testData
