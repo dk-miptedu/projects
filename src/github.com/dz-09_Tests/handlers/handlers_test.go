@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func TestaddTransaction(t *testing.T) {
+func TestAddTransaction(t *testing.T) {
 	// Setup
 	parsedTime := time.Now()
 	// Тестовые данные, которые ожидаем добавить в Базу данных

@@ -7,6 +7,14 @@
             "mode": "auto",
             "args": [],
             "program": "/home/arcdm/GIT/netology/Magistratura/Семестр-02/Программирование на Golang/projects/src/github.com/dz-09_Tests/handlers/handlers_test.go"
+        },
+        {
+            "type": "go",
+            "name": "debug db_test.go",
+            "request": "launch",
+            "mode": "auto",
+            "args": [],
+            "program": "/home/arcdm/GIT/netology/Magistratura/Семестр-02/Программирование на Golang/projects/src/github.com/dz-09_Tests/db/db_test.go"
         }
     ]
 }

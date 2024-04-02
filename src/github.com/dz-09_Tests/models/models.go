@@ -23,7 +23,6 @@ type Transactions struct {
 	TransactionDate time.Time `json"json:"date"`
 	Description     string    `json:"description"`
 	Commission      float64   `gorm:"not null;default:0" json:"commission"`
-	//User            *Users    `gorm:"foreignKey:UserID"`
 }
 
 // Проверка: Ограничение по типу транзакции - "income", "expense" или "transfer"
