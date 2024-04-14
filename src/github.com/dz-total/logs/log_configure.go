@@ -9,12 +9,12 @@ import (
 
 var Log *logrus.Logger
 
-func InitializeLogging() {
+func InitializeLogging(path string) {
 
 	// Set up Viper to read the config file
 	viper.SetConfigName("logsetup")
 	viper.SetConfigType("yaml")
-	viper.AddConfigPath("./configs") // or wherever your config file is located
+	viper.AddConfigPath(path) // or wherever your config file is located
 
 	if err := viper.ReadInConfig(); err != nil {
 		logrus.Fatalf("Error reading config file, %s", err)

@@ -5,6 +5,7 @@ import (
 	"FinalTaskAppGoBasic/dbs"
 	"FinalTaskAppGoBasic/handlers"
 	"FinalTaskAppGoBasic/logs"
+	"FinalTaskAppGoBasic/prometeus"
 	"fmt"
 	"net/http"
 
@@ -13,7 +14,7 @@ import (
 
 func Cmd() {
 	fmt.Printf("initi logrus... ")
-	logs.InitializeLogging()
+	logs.InitializeLogging("./configs")
 	fmt.Println("logrus Init Done.")
 
 	configApp, err := configs.LoadConfig("./configs/config.yaml")
@@ -42,5 +43,6 @@ func Cmd() {
 	logs.Log.Infof("======= Starting server on port %s =======", port)
 	fmt.Println("Server is running on port " + port)
 	logs.Log.Fatal(http.ListenAndServe(":"+port, nil))
+	prometeus.Init()
 
 }
