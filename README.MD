@@ -20,4 +20,4 @@
 1. [Тема 13. Основы Docker и контейнеризации в Golang](/src/github.com/dz-08_Currency_Rate/README.md)
 1. Тема 14. CI/CD в Golang с использованием Kubernetes
 1. Тема 15. Мониторинг и логирование в Kubernetes
-1. Итоговый вебинар
+1. [Итоговое Домашнее задание](/src/github.com/dz-total/README.md)
