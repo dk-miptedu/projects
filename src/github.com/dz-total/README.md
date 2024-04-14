@@ -34,7 +34,7 @@ make stop
 **Для проверки работы приложения можно использовать:**
 
 1. [Postman коллекцию](./assets/GOLang-Transactions.postman_collection.json);
-2. DBeaver, параметры [подключения к БД: ](./configs/config.yaml)
+2. DBeaver, параметры [подключения к БД ](./configs/config.yaml).
 
 ### Использование POSTMAN коллекции
 
