@@ -18,8 +18,8 @@ make test
 ### Запуск и проверка работы приложения
 
 Для проверки работы приложения можно использовать:
-1. [Postman коллекцию](.assets/GOLang-Transactions.postman_collection.json);
-2. DBeaver, параметры [подключения к БД: ](.configs/configs.yaml)
+1. [Postman коллекцию](./assets/GOLang-Transactions.postman_collection.json);
+2. DBeaver, параметры [подключения к БД: ](./configs/configs.yaml)
 
 ## Архитектура системы
 Система состоит из нескольких компонентов:
