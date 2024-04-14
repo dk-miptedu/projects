@@ -7,6 +7,7 @@ import (
 	"time"
 )
 
+// https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_splQmmKr8wXgu8kP7PfeLqUna4WsWDkBVJZqy253&currencies=EUR%2CUSD%2CCAD&base_currency=RUB
 const (
 	apiURL = "https://freecurrencyapi.com/api/v2/latest?apikey=%s&base_currency=%s"
 )

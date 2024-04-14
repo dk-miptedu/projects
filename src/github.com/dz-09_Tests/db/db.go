@@ -29,7 +29,7 @@ func Connect() {
 		log.Fatal("Failed to connect to database\n", err)
 		os.Exit(2)
 	}
-	log.Println("Connection Opened to Database")
+	log.Println("Connect():Connection Opened to Database")
 }
 
 func Migrate() {
@@ -38,7 +38,7 @@ func Migrate() {
 	DB.AutoMigrate(&models.Users{})
 	log.Println("Model USERS Migration Completed")
 	DB.AutoMigrate(&models.Transactions{})
-	log.Println("Model Transactions Migration Completed")
+	log.Println("Migrate(): Model Transactions Migration Completed")
 }
 
 func Close() {
@@ -47,5 +47,5 @@ func Close() {
 		log.Fatal("Failed to close database connection\n", err)
 	}
 	sqlDB.Close()
-	log.Println("atabase Migration Completed")
+	log.Println("Close(): Database Migration Completed")
 }

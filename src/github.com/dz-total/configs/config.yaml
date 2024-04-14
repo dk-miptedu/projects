@@ -1,0 +1,11 @@
+database:
+  host: "localhost"
+  port: 5432
+  user: "mplspsql"
+  password: "mplspsql"
+  dbname: "transactionsdb"
+  sslmode: "disable"
+restapi:
+  host: "localhost"
+  port: 8080
+  sslmode: "disable"

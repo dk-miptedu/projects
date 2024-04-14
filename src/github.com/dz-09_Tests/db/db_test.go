@@ -35,7 +35,7 @@ func TestUsersTransactionsIntegration(t *testing.T) {
 		TransactionType: "income",
 		Category:        "Test-" + randomString(1, r),
 		TransactionDate: time.Now(),
-		Description:     "Test Transaction",
+		Description:     "Test_Transaction",
 		Commission:      0.0,
 	}
 	if err := DB.Create(&transaction).Error; err != nil {
@@ -44,6 +44,12 @@ func TestUsersTransactionsIntegration(t *testing.T) {
 
 	// Fetch and verify the transaction
 	var fetchedTx models.Transactions
+
+	DB.First(&fetchedTx, transaction.ID)
+
+	fmt.Println(*&transaction)
+	fmt.Println(*&fetchedTx)
+
 	if err := DB.First(&fetchedTx, transaction.ID).Error; err != nil {
 		t.Fatalf("Failed to fetch transaction: %v", err)
 	}
