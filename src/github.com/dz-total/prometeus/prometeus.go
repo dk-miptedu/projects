@@ -3,34 +3,24 @@ package prometeus
 import (
 	"net/http"
 
+	"github.com/gorilla/mux"
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/prometheus/client_golang/prometheus/promauto"
 )
 
 var (
-	httpRequestsTotal = prometheus.NewCounterVec(
-		prometheus.CounterOpts{
-			Name: "http_requests_total",
-			Help: "Number of HTTP requests.",
-		},
-		[]string{"path"}, // labels
-	)
+	httpDuration = promauto.NewHistogramVec(prometheus.HistogramOpts{
+		Name: "myapp_http_duration_seconds",
+		Help: "Duration of HTTP requests.",
+	}, []string{"path"})
 )
 
-func Init() {
-	// Регистрация метрики в Prometheus
-	prometheus.MustRegister(httpRequestsTotal)
-	prometeusHanler()
-}
-
-func prometeusHanler() {
-	http.Handle("/metrics", promhttp.Handler())
-	http.HandleFunc("/", handleFunc)
-	http.ListenAndServe(":8089", nil)
-}
-
-func handleFunc(w http.ResponseWriter, r *http.Request) {
-	// Увеличение счетчика для метрик
-	httpRequestsTotal.With(prometheus.Labels{"path": r.URL.Path}).Inc()
-	w.Write([]byte("Hello, world!"))
+func PrometheusMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		route := mux.CurrentRoute(r)
+		path, _ := route.GetPathTemplate()
+		timer := prometheus.NewTimer(httpDuration.WithLabelValues(path))
+		next.ServeHTTP(w, r)
+		timer.ObserveDuration()
+	})
 }

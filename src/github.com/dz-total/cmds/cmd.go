@@ -10,6 +10,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 func Cmd() {
@@ -25,7 +26,8 @@ func Cmd() {
 	dbs.Connect(configApp.DataBase)
 	dbs.Migrate()
 	r := mux.NewRouter()
-
+	r.Use(prometeus.PrometheusMiddleware)
+	r.Path("/metrics").Handler(promhttp.Handler())
 	r.HandleFunc("/transactions", handlers.HandleTransactions)
 	r.HandleFunc("/transactions", handlers.HandleTransactions).Methods("GET", "POST")
 	r.HandleFunc("/transactions/{id}", handlers.HandleTransactions).Methods("GET")
@@ -43,6 +45,5 @@ func Cmd() {
 	logs.Log.Infof("======= Starting server on port %s =======", port)
 	fmt.Println("Server is running on port " + port)
 	logs.Log.Fatal(http.ListenAndServe(":"+port, nil))
-	prometeus.Init()
 
 }

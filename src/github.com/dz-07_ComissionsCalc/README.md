@@ -39,7 +39,7 @@
 
 ```json
 // Создайте новый HTTP-запрос
-// requestBody — структура вашего запроса в JSON-форматеreq, err := http.NewRequest(“POST”, “http://localhost:8081commissions/calculate”, bytes.NewBuffer(requestBody))
+// requestBody — структура вашего запроса в JSON-форматеreq, err := http.NewRequest(“POST”, “http://localhost:8081/commissions/calculate”, bytes.NewBuffer(requestBody))
 if err != nil {
 return nil, err
 }
